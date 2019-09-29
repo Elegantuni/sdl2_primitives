@@ -27,7 +27,7 @@ square2: primitives
 
 squarerectangle1: primitives
 	gcc -o squarerectangle1/main.o -c squarerectangle1/main.c -I./primitives/
-	gcc -o squarerectangle1/squarerectangle1 squarerectangle1/main.o primitives/hline.o primitives/vline.o -I./primitives/ `pkg-config --cflags --libs sdl2`
+	gcc -o squarerectangle1/squarerectangle1 squarerectangle1/main.o primitives/vline.o primitives/hline.o primitives/xynormrectangle.o -I./primitives/ `pkg-config --cflags --libs sdl2`
 
 line1: primitives
 	gcc -o line1/main.o -c line1/main.c -I./primitives/

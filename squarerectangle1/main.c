@@ -1,17 +1,15 @@
 #include <stdlib.h>
 
 #include <SDL2/SDL.h>
-#include "vline.h"
-#include "hline.h"
+#include "xynormrectangle.h"
 
 #include "colorspec.h"
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
+#define WINDOW_WIDTH 1366
+#define WINDOW_HEIGHT 768
 
 int main(void) {
 	 struct thecolorspec red = {255, 0, 0, 0};
-	 struct thecolorspec green = {0, 255, 0, 0};
 	 int quit = 0;
     SDL_Event event;
     SDL_Renderer *renderer;
@@ -21,10 +19,7 @@ int main(void) {
 	 SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
-    vline(renderer, 0, 0, 1079, &green);
-    vline(renderer, 1919, 0, 1079, &red);
-    hline(renderer, 0, 0, 1919, &green);
-    hline(renderer, 0, 1079, 1919, &red);
+    xynormrectangle(renderer, 0, WINDOW_WIDTH - 1, 0, WINDOW_HEIGHT - 1, &red);
     SDL_RenderPresent(renderer);
     
     while(!quit) 
