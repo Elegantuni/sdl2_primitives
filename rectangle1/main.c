@@ -5,12 +5,30 @@
 #include "xynormrectangle.h"
 #include "colorspec.h"
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
+#include "rectanglecollision.h"
+
+#define WINDOW_WIDTH 1366
+#define WINDOW_HEIGHT 768
 
 int main(void) {
 	 struct thecolorspec red = {255, 0, 0, 0};
+	 struct thecolorspec blue = {0, 0, 255, 0};
+	 struct thecolorspec black = {0, 0, 0, 0};
 	 int quit = 0;
+	 struct rectangle rect1;
+	 struct rectangle rect2;
+	 struct rectangle rect1temp;
+	 rect1.x1 = 0;
+	 rect1.x2 = 10;
+	 rect1.y1 = 0;
+	 rect1.y2 = 10;
+	 rect1.color = red;
+	 rect2.x1 = 30;
+	 rect2.x2 = 10;
+	 rect2.y1 = 30;
+	 rect2.y2 = 10;
+	 rect2.color = blue;
+	 rect1temp = rect1;
     SDL_Event event;
     SDL_Renderer *renderer;
     SDL_Window *window;
@@ -19,11 +37,16 @@ int main(void) {
 	 SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
-    xynormrectangle(renderer, 0, 1919, 0, 1079, &red);
+
+    xynormrectangle(renderer, rect1.x1, rect1.x2, rect1.y1, rect1.y2, &rect1.color);
+    xynormrectangle(renderer, rect2.x1, rect2.x2, rect2.y1, rect2.y2, &rect2.color);
+
     SDL_RenderPresent(renderer);
     
     while(!quit) 
     {
+    	  rect1temp = rect1;
+    	  
         SDL_PollEvent(&event);
 
         switch(event.type)
@@ -36,8 +59,63 @@ int main(void) {
         		case SDLK_ESCAPE:
         			quit = 1;
         			break;
-        		}
+        		case SDLK_a:
+        			xynormrectangle(renderer, rect1.x1, rect1.x2, rect1.y1, rect1.y2, &black);
+
+        			rect1.x1--;
+
+        			if(rect1.x1 < 0)
+        			{
+        				rect1.x1 = 0;
+        			}
+        			break;
+        		case SDLK_d:
+        			xynormrectangle(renderer, rect1.x1, rect1.x2, rect1.y1, rect1.y2, &black);
+
+        			rect1.x1++;
+
+        			if(rect1.x1 + 10 > WINDOW_WIDTH - 1)
+        			{
+        				rect1.x1 = WINDOW_WIDTH - 1 - 10;
+        			}
+        			break;
+        		case SDLK_w:
+        			xynormrectangle(renderer, rect1.x1, rect1.x2, rect1.y1, rect1.y2, &black);
+
+        			rect1.y1--;
+
+        			if(rect1.y1 < 0)
+        			{
+        				rect1.y1 = 0;
+        			}
+        			break;
+        		case SDLK_s:
+        			xynormrectangle(renderer, rect1.x1, rect1.x2, rect1.y1, rect1.y2, &black);
+
+        			rect1.y1++;
+
+        			if(rect1.y1 + 10 > WINDOW_HEIGHT - 1)
+        			{
+        				rect1.y1 = WINDOW_HEIGHT - 1 - 10;
+        			}
+        			break;
        	}
+
+			if(rectanglecollision(rect1, rect2) == 0)
+			{
+       		xynormrectangle(renderer, rect1.x1, rect1.x2, rect1.y1, rect1.y2, &rect1.color);
+       		xynormrectangle(renderer, rect2.x1, rect2.x2, rect2.y1, rect2.y2, &rect2.color);
+       	}
+       	else
+       	{
+       		xynormrectangle(renderer, rect1temp.x1, rect1temp.x2, rect1temp.y1, rect1temp.y2, &rect1temp.color);
+       		xynormrectangle(renderer, rect2.x1, rect2.x2, rect2.y1, rect2.y2, &rect2.color);
+
+       		rect1 = rect1temp;
+       	}
+       	
+       	SDL_RenderPresent(renderer);
+       } 
     }
     
     SDL_DestroyRenderer(renderer);
