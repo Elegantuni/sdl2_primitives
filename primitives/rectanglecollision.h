@@ -11,6 +11,7 @@ struct rectangle
 	int y1;
 	int y2;
 	struct thecolorspec color;
+	int alive;
 };
 
 int rectanglecollision(struct rectangle data1, struct rectangle data2);

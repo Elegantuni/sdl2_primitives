@@ -1,4 +1,4 @@
-all: primitives hline1 vline1 rectangle1 square2 squarerectangle1 line1
+all: primitives hline1 vline1 rectangle1 rectanglecollision1 square2 squarerectangle1 line1
 	echo "Finished"
 	
 primitives: primitives/hline.o primitives/vline.o primitives/xynormsquare.o primitives/xynormrectangle.o primitives/line.o primitives/rectanglecollision.o
@@ -20,6 +20,10 @@ vline1: primitives
 rectangle1: primitives
 	gcc -o rectangle1/main.o -c rectangle1/main.c -I./primitives/
 	gcc -o rectangle1/rectangle1 rectangle1/main.o primitives/xynormrectangle.o primitives/hline.o primitives/vline.o primitives/rectanglecollision.o -I./primitives/ `pkg-config --cflags --libs sdl2`
+	
+rectanglecollision1: primitives
+	gcc -o rectanglecollision1/main.o -c rectanglecollision1/main.c -I./primitives/
+	gcc -o rectanglecollision1/rectanglecollision1 rectanglecollision1/main.o primitives/xynormrectangle.o primitives/hline.o primitives/vline.o primitives/rectanglecollision.o -I./primitives/ `pkg-config --cflags --libs sdl2`
 
 square2: primitives
 	gcc -o square2/main.o -c square2/main.c -I./primitives/
@@ -35,5 +39,5 @@ line1: primitives
 
 
 clean:
-	rm -f primitives/hline.o primitives/vline.o primitives/xynormsquare.o primitives/xynormrectangle.o primitives/line.o primitives/rectanglecollision.o hline1/hline1 hline1/main.o vline1/vline1 vline1/main.o rectangle1/rectangle1 rectangle1/main.o square2/square2 square2/main.o squarerectangle1/squarerectangle1 squarerectangle1/main.o line1/line1 line1/main.o
- 
+	rm -f primitives/hline.o primitives/vline.o primitives/xynormsquare.o primitives/xynormrectangle.o primitives/line.o primitives/rectanglecollision.o hline1/hline1 hline1/main.o vline1/vline1 vline1/main.o rectangle1/rectangle1 rectangle1/main.o square2/square2 square2/main.o squarerectangle1/squarerectangle1 squarerectangle1/main.o line1/line1 line1/main.o rectanglecollision1/rectanglecollision1 rectanglecollision1/main.o
+
