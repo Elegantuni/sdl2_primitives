@@ -2,7 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include "colorspec.h"
-#include "line.h"
+#include "circle.h"
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
@@ -19,7 +19,9 @@ int main(void) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    line(renderer, 0, 0, WINDOW_WIDTH-1, 0, &red);
+    
+    circle(renderer, 500, 500, 100, &red);
+    
     SDL_RenderPresent(renderer);
     
     while(!quit) 
