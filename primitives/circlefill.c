@@ -15,28 +15,8 @@ int circlefill(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecol
 		
 		for(double i = 0; i <= radius; i=i+1)
 		{
-			for(double j = 0; j <= i; j=j+0.01)
+			for(double j = 0; j <= i; j=j+1)
 			{
-				y = sqrt(i * i - (x1 - x1) * (x1 - x1)) + y1;
-
-				chy = (int)y;
-
-				if(chy < 0)
-				{
-					chy = -1 * chy;
-				}
-
-				SDL_RenderDrawPoint(renderer, x1, chy);
-
-				diff = chy - y1;
-
-				if(diff < 0)
-				{
-					diff = -1 * diff;
-				}
-
-				SDL_RenderDrawPoint(renderer, x1, chy - diff - diff);
-			
 				y = sqrt(i * i - ((x1 - j) - x1) * ((x1 - j) - x1)) + y1;
 
 				chy = (int)y;
@@ -45,10 +25,6 @@ int circlefill(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecol
 				{
 					chy = -1 * chy;
 				}
-			
-				SDL_RenderDrawPoint(renderer, (x1 - j), y1);
-
-				SDL_RenderDrawPoint(renderer, (x1 - j), chy);
 
 				diff = chy - y1;
 
@@ -56,30 +32,16 @@ int circlefill(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecol
 				{
 					diff = -1 * diff;
 				}
-			
-				SDL_RenderDrawPoint(renderer, (x1 - j), chy - diff - diff);
 
-				y = sqrt(i * i - ((x1 + j) - x1) * ((x1 + j) - x1)) + y1;
-
-				chy = (int)y;
-
-				if(chy < 0)
+				for(int i = chy - diff - diff; i <= chy; i++)
 				{
-					chy = -1 * chy;
+					SDL_RenderDrawPoint(renderer, (x1 - j), i);
 				}
-			
-				SDL_RenderDrawPoint(renderer, (x1 + j), y1);
 
-				SDL_RenderDrawPoint(renderer, (x1 + j), chy);
-
-				diff = chy - y1;
-
-				if(diff < 0)
+				for(int i = chy - diff - diff; i <= chy; i++)
 				{
-					diff = -1 * diff;
-				}
-			
-				SDL_RenderDrawPoint(renderer, (x1 + j), chy - diff - diff);
+					SDL_RenderDrawPoint(renderer, (x1 + j), i);
+				} 
 			}
 		}
 	}
