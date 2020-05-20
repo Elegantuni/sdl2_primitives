@@ -13,36 +13,33 @@ int circlefill(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecol
 		int diff;
 		double theradius;
 		
-		for(double i = 0; i <= radius; i=i+1)
+		for(double i = 0; i <= radius; i=i+0.1)
 		{
-			for(double j = 0; j <= i; j=j+1)
+			y = sqrt(radius * radius - ((x1 - i) - x1) * ((x1 - i) - x1)) + y1;
+
+			chy = (int)y;
+
+			if(chy < 0)
 			{
-				y = sqrt(i * i - ((x1 - j) - x1) * ((x1 - j) - x1)) + y1;
-
-				chy = (int)y;
-
-				if(chy < 0)
-				{
-					chy = -1 * chy;
-				}
-
-				diff = chy - y1;
-
-				if(diff < 0)
-				{
-					diff = -1 * diff;
-				}
-
-				for(int i = chy - diff - diff; i <= chy; i++)
-				{
-					SDL_RenderDrawPoint(renderer, (x1 - j), i);
-				}
-
-				for(int i = chy - diff - diff; i <= chy; i++)
-				{
-					SDL_RenderDrawPoint(renderer, (x1 + j), i);
-				} 
+				chy = -1 * chy;
 			}
+
+			diff = chy - y1;
+
+			if(diff < 0)
+			{
+				diff = -1 * diff;
+			}
+
+			for(int j = chy - diff - diff; j <= chy; j++)
+			{
+				SDL_RenderDrawPoint(renderer, (x1 - i), j);
+			}
+
+			for(int j = chy - diff - diff; j <= chy; j++)
+			{
+				SDL_RenderDrawPoint(renderer, (x1 + i), j);
+			} 
 		}
 	}
 

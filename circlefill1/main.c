@@ -10,7 +10,7 @@
 int main(void) {
     struct thecolorspec red = { 255, 0, 0, 0 };
     int quit = 0;
-    int theradius1 = 50;
+    int theradius1 = 200;
     SDL_Event event;
     SDL_Renderer *renderer;
     SDL_Window *window;
