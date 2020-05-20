@@ -4,8 +4,8 @@
 #include "colorspec.h"
 #include "circle.h"
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
+#define WINDOW_WIDTH 1366
+#define WINDOW_HEIGHT 768
 
 int main(void) {
 	 struct thecolorspec red = { 255, 0, 0, 0 };

@@ -2,14 +2,15 @@
 
 #include <SDL2/SDL.h>
 #include "colorspec.h"
-#include "hline.h"
+#include "circlefill.h"
 
 #define WINDOW_WIDTH 1366
 #define WINDOW_HEIGHT 768
 
 int main(void) {
-	 struct thecolorspec red = { 255, 0, 0, 0 };
-	 int quit = 0;
+    struct thecolorspec red = { 255, 0, 0, 0 };
+    int quit = 0;
+    int theradius1 = 50;
     SDL_Event event;
     SDL_Renderer *renderer;
     SDL_Window *window;
@@ -19,7 +20,9 @@ int main(void) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    hline(renderer, 0, 1080 - 1, 959, &red);
+    
+    circlefill(renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, theradius1, &red);
+    
     SDL_RenderPresent(renderer);
     
     while(!quit) 
