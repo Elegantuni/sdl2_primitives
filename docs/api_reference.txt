@@ -1,0 +1,73 @@
+int circle(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecolorspec *thecolor);
+int circlefill(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecolorspec *thecolor);
+int hline(SDL_Renderer* renderer, int x1, int y1, int x2, struct thecolorspec *thecolor);
+int line(SDL_Renderer *renderer, int x1, int y1, int x2, int y2, struct thecolorspec *thecolor);
+int vline(SDL_Renderer *renderer, int x1, int y1, int y2, struct thecolorspec *thecolor);
+int xynormrectangle(SDL_Renderer *renderer, int x1, int sizex, int y1, int sizey, struct thecolorspec *thecolor);
+int xynormsquare(SDL_Renderer *renderer, int x1, int y1, int size, struct thecolorspec *thecolor);
+
+Explainations:
+1) int circle(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecolorspec *thecolor);
+Draws a circle that is a outline
+- renderer is the renderer
+- x1 is the x coordinate of the center of the circle
+- y1 is the y coordinate of the center of the circle
+- radius is the radius of the circle from the center of the circle. (The radius from the x1 and y1 coordinates)
+- thecolor is a struct, in primitives/colorspec.h, that you set the red, green, blue, and alpha of the color of the
+circle
+
+int circlefill(SDL_Renderer* renderer, int x1, int y1, int radius, struct thecolorspec *thecolor);
+Draws a circle that is a filled circle
+- renderer is the renderer
+- x1 is the x coordinate of the center of the circle
+- y1 is the y coordinate of the center of the circle
+- radius is the radius of the circle from the center of the circle. (The radius from the x1 and y1 coordinates)
+- thecolor is a struct, in primitives/colorspec.h, that you set the red, green, blue, and alpha of the color of the
+circle
+
+int hline(SDL_Renderer* renderer, int x1, int y1, int x2, struct thecolorspec *thecolor);
+Draws a horizontal line (Draws a horizontal line faster than line)
+- renderer is the renderer
+- x1 is one of the x coordinates (It may be the left or right side of the line)
+- y1 is the y coordinate for every point of the line (The y1 coordinate is always the same in a horizontal line)
+- x2 is one of the x coordinates (It may be the left or right side of the line)
+- thecolor is a struct, in primitives/colorspec.h, that you set the red, green, blue, and alpha of the color of the
+line
+
+int line(SDL_Renderer *renderer, int x1, int y1, int x2, int y2, struct thecolorspec *thecolor);
+Draws a line of any type
+- renderer is the renderer
+- x1 is one of the x coordinates (It goes with the y1 coordinate)
+- y1 is one of the y coordinates (It goes with the x1 coordinate)
+- x2 is one of the x coordinates (It goes with the y2 coordinate)
+- y2 is one of the y coordinates (It goes with the x2 coordinate)
+- thecolor is a struct, in primitives/colorspec.h, that you set the red, green, blue, and alpha of the color of the
+line
+
+int vline(SDL_Renderer *renderer, int x1, int y1, int y2, struct thecolorspec *thecolor);
+Draws a vertical line
+- renderer is the renderer
+- x1 is one of the x coordinates (The x1 coordinate is always the same in a vertical line)
+- y1 is the y coordinate for every point of the line (It may be the left or right side of the line)
+- y2 is one of the y coordinates (It may be the left or right side of the line)
+- thecolor is a struct, in primitives/colorspec.h, that you set the red, green, blue, and alpha of the color of the
+line
+
+int xynormrectangle(SDL_Renderer *renderer, int x1, int sizex, int y1, int sizey, struct thecolorspec *thecolor);
+Draws a rectangle or square, if sizex and sizey are the same.
+- renderer is the renderer
+- x1 is the left x coordinate
+- sizex is the pixel length in the positive x direction of the x1 coordinate
+- y1 is the left y coordinate
+- sizey is the pixel length in the positive y direction of the y1 coordinate
+- thecolor is a struct, in primitives/colorspec.h, that you set the red, green, blue, and alpha of the color of the
+rectangle
+
+int xynormsquare(SDL_Renderer *renderer, int x1, int y1, int size, struct thecolorspec *thecolor);
+Draws a square
+- renderer is the renderer
+- x1 is the left x coordinate
+- y1 is the left y coordinate
+- size is the pixel length in the positive x and y direction of the x1 and y1 coordinates
+- thecolor is a struct, in primitives/colorspec.h, that you set the red, green, blue, and alpha of the color of the
+square
