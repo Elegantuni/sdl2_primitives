@@ -11,7 +11,6 @@
 
 #define NUM 200
 
-SDL_Renderer *renderer;
 struct thecolorspec black = {0, 0, 0, 0};
 struct thecolorspec red = {255, 0, 0, 0};
 struct thecolorspec green = {0, 255, 0, 0};
@@ -73,47 +72,6 @@ void attract(struct particle *A, struct particle *B)
 	A->xp = CX + A->x;// - p[0].x;
 	A->yp = CY + A->y;// + p[0].y;
 
-}
-
-void update()
-{
-	int n;
-	int i;
-
-	//erase old particle
-	for(n = 0; n < NUM; n++)
-
-	//calculate gravity for each particle
-	for(n = 0; n < NUM; n++)
-	{
-		circlefill(renderer, p[n].oldX, p[n].oldY, 5, &black);
-
-		//apply gravity between every particle
-		for(i = 0; i < NUM; i++)
-		{
-			if(i != n)
-				attract(&p[n], &p[i]);
-		}
-
-		//reset particle if it gets too far away
-		if(p[n].xp < -1000 ||
-			p[n].xp > 1000 ||
-			p[n].yp < -1000 ||
-			p[n].yp > 1000)
-		{
-			resetparticle(n);
-		}
-
-		//plot the new particle
-		circlefill(renderer, p[n].xp, p[n].yp, 4, &red);
-
-		//keep track of the current position
-		p[n].oldX = p[n].xp;
-		p[n].oldY = p[n].yp;
-	}
-
-	//draw the primary particle
-	circlefill(renderer, p[0].xp, p[0].yp, 5, &green);
 }
 
 void resetparticle(int n)
