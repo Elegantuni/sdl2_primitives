@@ -1,4 +1,4 @@
-all: primitives hline1 vline1 rectangle1 rectanglecollision1 square2 squarerectangle1 line1 circle1 circlefill1
+all: primitives hline1 vline1 rectangle1 rectanglecollision1 square2 squarerectangle1 line1 circle1 circlefill1 particles1
 	echo "Finished"
 	
 primitives: primitives/hline.o primitives/vline.o primitives/xynormsquare.o primitives/xynormrectangle.o primitives/line.o primitives/rectanglecollision.o primitives/circle.o primitives/circlefill.o
@@ -47,5 +47,9 @@ circlefill1: primitives
 	gcc -o circlefill1/main.o -c circlefill1/main.c -I./primitives/
 	gcc -o circlefill1/circlefill1 circlefill1/main.o primitives/circlefill.o -I./primitives/ `pkg-config --cflags --libs sdl2` -lm
 
+particles1: primitives
+	gcc -o particles1/main.o -c particles1/main.c -I./primitives/
+	gcc -o particles1/particles1 particles1/main.o primitives/circlefill.o -I./primitives/ `pkg-config --cflags --libs sdl2` -lm
+	
 clean:
-	rm -f primitives/hline.o primitives/vline.o primitives/xynormsquare.o primitives/xynormrectangle.o primitives/line.o primitives/rectanglecollision.o primitives/circle.o primitives/circlefill.o hline1/hline1 hline1/main.o vline1/vline1 vline1/main.o rectangle1/rectangle1 rectangle1/main.o square2/square2 square2/main.o squarerectangle1/squarerectangle1 squarerectangle1/main.o line1/line1 line1/main.o rectanglecollision1/rectanglecollision1 rectanglecollision1/main.o circle1/circle1 circle1/main.o circlefill1/circlefill1 circlefill1/main.o
+	rm -f primitives/hline.o primitives/vline.o primitives/xynormsquare.o primitives/xynormrectangle.o primitives/line.o primitives/rectanglecollision.o primitives/circle.o primitives/circlefill.o hline1/hline1 hline1/main.o vline1/vline1 vline1/main.o rectangle1/rectangle1 rectangle1/main.o square2/square2 square2/main.o squarerectangle1/squarerectangle1 squarerectangle1/main.o line1/line1 line1/main.o rectanglecollision1/rectanglecollision1 rectanglecollision1/main.o circle1/circle1 circle1/main.o circlefill1/circlefill1 circlefill1/main.o particles1/particles1 particles1/main.o
