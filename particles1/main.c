@@ -153,7 +153,7 @@ int main(void)
                 }
 
                 //reset particle if it gets too far away
-		if(p[n].xp < -1000 ||
+			   	 if(p[n].xp < -1000 ||
                         p[n].xp > 1000 ||
                         p[n].yp < -1000 ||
                         p[n].yp > 1000)
@@ -162,8 +162,11 @@ int main(void)
                 }
 
                 //plot the new particle
-                circlefill(renderer, p[n].xp, p[n].yp, 4, &red);
-
+               if(p[n].x >= 0 && p[n].y >= 0 && p[n].x < SCREEN_W && p[n].y < SCREEN_H)
+               {
+               	circlefill(renderer, p[n].xp, p[n].yp, 4, &red);
+					}
+					 
                 //keep track of the current position
                 p[n].oldX = p[n].xp;
                 p[n].oldY = p[n].yp;
